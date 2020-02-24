@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<upohome>
+    <!--CLIENTES-->
+    <cliente>
+        <nombre>Jacinto</nombre>
+        <apellidos>Fernandez Perez</apellidos>
+        <dni>76576565F</dni>
+        <telefono>987987987</telefono>
+        <domicilio>Calle Falsa 123</domicilio>
+        <espropietario>false</espropietario>
+    </cliente>
+    <cliente>
+        <nombre>Gabriel</nombre>
+        <apellidos>Sanchez Lopez</apellidos>
+        <dni>98798798J</dni>
+        <telefono>765765765</telefono>
+        <domicilio>Calle de al lado 456</domicilio>
+        <espropietario>true</espropietario>
+    </cliente>
+    <cliente>
+        <nombre>Manuela</nombre>
+        <apellidos>Hidalgo Fernandez</apellidos>
+        <dni>54354354U</dni>
+        <telefono>765765765</telefono>
+        <domicilio>Calle de Arriba 9</domicilio>
+        <espropietario>true</espropietario>
+    </cliente>
+    
+    <!--ALQUILERES-->
+    <alquiler>
+        <idalquiler>1</idalquiler>
+        <dnicliente>76576565F</dnicliente>
+        <idvivienda>2</idvivienda>
+        <fechainicio>10/03/2019</fechainicio>
+        <fechafin>10/05/2020</fechafin>
+    </alquiler>
+    <alquiler>
+        <idalquiler>2</idalquiler>
+        <dnicliente>98798798J</dnicliente>
+        <idvivienda>3</idvivienda>
+        <fechainicio>05/01/2019</fechainicio>
+        <fechafin>27/10/2019</fechafin>
+    </alquiler>
+    <alquiler>
+        <idalquiler>3</idalquiler>
+        <dnicliente>54354354U</dnicliente>
+        <idvivienda>1</idvivienda>
+        <fechainicio>20/12/2019</fechainicio>
+        <fechafin>30/04/2020</fechafin>
+    </alquiler>
+
+    <!--VIVIENDAS-->
+    <vivienda>
+        <idvivienda>1</idvivienda>
+        <direccion>Calle esquina 4</direccion>
+        <precioalquiler>500</precioalquiler>
+        <estadodisponibilidad>false</estadodisponibilidad>
+        <imgprincipal>piso1.jpg</imgprincipal>
+        <numhabitaciones>4</numhabitaciones>
+        <descripcion>Casa de 160 metros cuadrados acogedora para una familia</descripcion>
+        <exterior>Jardin con huerto y piscina</exterior>
+        <climatizacion>true</climatizacion>
+    </vivienda>
+    <vivienda>
+        <idvivienda>2</idvivienda>
+        <direccion>Calle betis 4</direccion>
+        <precioalquiler>380</precioalquiler>
+        <estadodisponibilidad>true</estadodisponibilidad>
+        <imgprincipal>piso2.jpg</imgprincipal>
+        <numhabitaciones>2</numhabitaciones>
+        <descripcion>Piso para una pareja con una habitacion extra, muy iluminado</descripcion>
+        <exterior>Ninguno</exterior>
+        <climatizacion>true</climatizacion>
+    </vivienda>
+    <vivienda>
+        <idvivienda>3</idvivienda>
+        <direccion>Calle ancha 7</direccion>
+        <precioalquiler>200</precioalquiler>
+        <estadodisponibilidad>true</estadodisponibilidad>
+        <imgprincipal>piso3.jpg</imgprincipal>
+        <numhabitaciones>1</numhabitaciones>
+        <descripcion>Piso de soltero</descripcion>
+        <exterior>Balcon</exterior>
+        <climatizacion>false</climatizacion>
+    </vivienda>
+
+    <vivienda>
+        <idvivienda>4</idvivienda>
+        <direccion>Calle abajo 4</direccion>
+        <precioalquiler>765</precioalquiler>
+        <estadodisponibilidad>false</estadodisponibilidad>
+        <imgprincipal>piso4.jpg</imgprincipal>
+        <numhabitaciones>4</numhabitaciones>
+        <descripcion>Casa de 90 metros cuadrados en un barrio acogedor</descripcion>
+        <exterior>Jardin con huerto y piscina</exterior>
+        <climatizacion>true</climatizacion>
+    </vivienda>
+    <vivienda>
+        <idvivienda>5</idvivienda>
+        <direccion>Calle sevilla 4</direccion>
+        <precioalquiler>458</precioalquiler>
+        <estadodisponibilidad>true</estadodisponibilidad>
+        <imgprincipal>piso5.jpg</imgprincipal>
+        <numhabitaciones>2</numhabitaciones>
+        <descripcion>Piso recien reformado, frigorifico incluido</descripcion>
+        <exterior>Ninguno</exterior>
+        <climatizacion>true</climatizacion>
+    </vivienda>
+    <vivienda>
+        <idvivienda>6</idvivienda>
+        <direccion>Calle izquierda 7</direccion>
+        <precioalquiler>200</precioalquiler>
+        <estadodisponibilidad>true</estadodisponibilidad>
+        <imgprincipal>piso6.jpg</imgprincipal>
+        <numhabitaciones>1</numhabitaciones>
+        <descripcion>Piso de soltero con chimenea</descripcion>
+        <exterior>Balcon</exterior>
+        <climatizacion>false</climatizacion>
+    </vivienda>
+
+    <vivienda>
+        <idvivienda>7</idvivienda>
+        <direccion>Calle mesa 4</direccion>
+        <precioalquiler>500</precioalquiler>
+        <estadodisponibilidad>false</estadodisponibilidad>
+        <imgprincipal>piso7.jpg</imgprincipal>
+        <numhabitaciones>4</numhabitaciones>
+        <descripcion>Casa de 160 metros cuadrados acogedora para una familia</descripcion>
+        <exterior>Jardin con huerto y piscina</exterior>
+        <climatizacion>true</climatizacion>
+    </vivienda>
+    <vivienda>
+        <idvivienda>8</idvivienda>
+        <direccion>Calle Madrid 4</direccion>
+        <precioalquiler>380</precioalquiler>
+        <estadodisponibilidad>true</estadodisponibilidad>
+        <imgprincipal>piso8.jpg</imgprincipal>
+        <numhabitaciones>2</numhabitaciones>
+        <descripcion>Piso para una pareja con una habitacion extra, muy iluminado</descripcion>
+        <exterior>Ninguno</exterior>
+        <climatizacion>true</climatizacion>
+    </vivienda>
+    <vivienda>
+        <idvivienda>9</idvivienda>
+        <direccion>Calle Ventana 7</direccion>
+        <precioalquiler>200</precioalquiler>
+        <estadodisponibilidad>true</estadodisponibilidad>
+        <imgprincipal>piso9.jpg</imgprincipal>
+        <numhabitaciones>1</numhabitaciones>
+        <descripcion>Piso de soltero grande</descripcion>
+        <exterior>Balcon</exterior>
+        <climatizacion>false</climatizacion>
+    </vivienda>
+
+    <!--CITAS-->
+    <cita>
+		<idcita>7</idcita>
+        <dnicliente>76576565F</dnicliente>
+        <dniempleado>43434343B</dniempleado>
+        <fecha>06/06/2020</fecha>
+        <hora>17:00</hora>
+        <descripcion>Dudas sobre el piso de la Calle ancha 7</descripcion>
+    </cita>
+    <cita>
+        <idcita>8</idcita>
+        <dnicliente>98798798J</dnicliente>
+        <dniempleado>54545454Y</dniempleado>
+        <fecha>07/07/2020</fecha>
+        <hora>18:00</hora>
+        <descripcion>Financiacion del piso</descripcion>
+    </cita>
+    <cita>
+        <idcita>9</idcita>
+        <dnicliente>54354354U</dnicliente>
+        <dniempleado>98989898U</dniempleado>
+        <fecha>08/08/2020</fecha>
+        <hora>19:00</hora>
+        <descripcion>Retraso en el pago del alquiler</descripcion>
+    </cita>
+
+    <!--EMPLEADOS-->
+    <empleado>
+        <nombre>Javier</nombre>
+        <apellidos>Gutierrez Gonzalez</apellidos>
+        <dni>98989898U</dni>
+        <telefono>654654654</telefono>
+        <salario>1100</salario>
+        <domicilio>Calle alli lejos 6</domicilio>
+    </empleado>
+    <empleado>
+        <nombre>Paca</nombre>
+        <apellidos>Pacheco Ramirez</apellidos>
+        <dni>54545454Y</dni>
+        <telefono>876876876</telefono>
+        <salario>1500</salario>
+        <domicilio>Calle larga 98</domicilio>
+    </empleado>
+    <empleado>
+        <nombre>Manolita</nombre>
+        <apellidos>Juarez Gonzalez</apellidos>
+        <dni>43434343B</dni>
+        <telefono>543543543</telefono>
+        <salario>1300</salario>
+        <domicilio>Calle Franco 55</domicilio>
+    </empleado>
+
+    <!--LIMPIEZAS-->
+    <limpieza>
+        <idlimpieza>1</idlimpieza>
+        <idempleado>98989898U</idempleado>
+        <idvivienda>1</idvivienda>
+        <fecha>10/10/2020</fecha>
+        <hora>10:00</hora>
+        <finalizado>false</finalizado>
+    </limpieza>
+    <limpieza>
+        <idlimpieza>2</idlimpieza>
+        <idempleado>54545454Y</idempleado>
+        <idvivienda>2</idvivienda>
+        <fecha>01/01/2020</fecha>
+        <hora>11:00</hora>
+        <finalizado>false</finalizado>
+    </limpieza>
+    <limpieza>
+        <idlimpieza>3</idlimpieza>
+        <idempleado>43434343B</idempleado>
+        <idvivienda>3</idvivienda>
+        <fecha>20/01/2020</fecha>
+        <hora>12:00</hora>
+        <finalizado>true</finalizado>
+    </limpieza>
+
+</upohome>
