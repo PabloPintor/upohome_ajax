@@ -10,6 +10,7 @@
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="../css/estilo.css">
 
 </head>
@@ -192,10 +193,10 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        Fecha Inicio: <input required class="form-control" type="date" name="fechaInicio"><br>
+                        Fecha Inicio: <input required class="form-control" type="text" name="fechaInicio"><br>
                     </div>
                     <div class="col-12 col-md-6">
-                        Fecha Fin: <input required class="form-control" type="date" name="fechaFin"><br>
+                        Fecha Fin: <input required class="form-control" type="text" name="fechaFin"><br>
                     </div>
                 </div>
 
@@ -237,10 +238,10 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        Fecha Inicio: <input required class="form-control" type="date" name="fechaInicio"><br>
+                        Fecha Inicio: <input required class="form-control" type="text" name="fechaInicio"><br>
                     </div>
                     <div class="col-12 col-md-6">
-                        Fecha Fin: <input required class="form-control" type="date" name="fechaFin"><br>
+                        Fecha Fin: <input required class="form-control" type="text" name="fechaFin"><br>
                     </div>
                 </div>
                 <input required type="button" class="btn btn-primary" name="btnAceptarModificarAlquiler" value="Modificar alquiler" />
@@ -389,7 +390,7 @@
                         ID Cita: <input required class="form-control" type="text" name="txtId" placeholder="ID Cita"><br>
                     </div>
                     <div class="col-12 col-md-4">
-                        Fecha: <input required class="form-control" type="date" name="fecha"><br>
+                        Fecha: <input required class="form-control" type="text" name="fecha"><br>
                     </div>
                     <div class="col-12 col-md-2">
                         Hora: <input required class="form-control" type="text" name="txtHora" placeholder="Hora"><br>
@@ -437,7 +438,7 @@
                         ID Cita: <input required class="form-control" type="text" name="txtId" placeholder="ID Cita" disabled><br>
                     </div>
                     <div class="col-12 col-md-4">
-                        Fecha: <input required class="form-control" type="date" name="fecha"><br>
+                        Fecha: <input required class="form-control" type="text" name="fecha"><br>
                     </div>
                     <div class="col-12 col-md-2">
                         Hora: <input required class="form-control" type="text" name="txtHora" placeholder="Hora"><br>
@@ -476,210 +477,15 @@
         </form>
     </div>
 
-    <!--FORMULARIO CONTRATAR EMPLEADOS-->
-
-    <div class="container mt-4 divFormulario" id="contratarEmpleado">
-        <form name="frmcontratarEmpleado">
-            <fieldset>
-                <legend>Contratar Empleado</legend>
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        Nombre: <input required class="form-control" type="text" name="txtNombre" placeholder="Nombre"><br>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        Apellidos: <input required class="form-control" type="text" name="txtApellidos" placeholder="Apellidos"><br>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        DNI: <input required class="form-control" type="text" name="txtDNI" placeholder="DNI"><br>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        Telefono: <input required class="form-control" type="text" name="txtTelefono" placeholder="Telefono"><br>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-10">
-                        Domicilio: <input required class="form-control" type="text" name="txtDomicilio" placeholder="Domicilio"><br>
-                    </div>
-                    <div class="col-12 col-md-2">
-                        Sueldo: <input required class="form-control" type="text" name="txtSueldo" placeholder="Sueldo"><br>
-                    </div>
-                </div>
-
-                <input required type="button" class="btn btn-primary" name="btnAceptarContratarEmpleado" value="Contratar" />
-            </fieldset>
-        </form>
-    </div>
-
-    <!--FORMULARIO MODIFICAR EMPLEADOS-->
-
-    <div class="container mt-4 divFormulario" id="cargarEmpleado">
-        <form name="frmCargarEmpleado">
-            <fieldset>
-                <legend>Cargar empleado</legend>
-                <div class="row">
-                    <div class="col-12">
-                        DNI: <input required class="form-control" type="text" name="txtDNI" placeholder="DNI"><br>
-                    </div>
-                </div>
-                <input required type="button" class="btn btn-primary" name="btnCargarEmpleado" value="Cargar empleado" />
-            </fieldset>
-        </form>
-    </div>
-
-    <div class="container mt-4 divFormulario" id="modificarEmpleado">
-        <form name="frmModificarEmpleado">
-            <fieldset>
-                <legend>Modificar Empleado</legend>
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        Nombre: <input required class="form-control" type="text" name="txtNombre" placeholder="Nombre"><br>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        Apellidos: <input required class="form-control" type="text" name="txtApellidos" placeholder="Apellidos"><br>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        DNI: <input required class="form-control" type="text" name="txtDNI" placeholder="DNI" disabled><br>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        Telefono: <input required class="form-control" type="text" name="txtTelefono" placeholder="Telefono"><br>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-10">
-                        Domicilio: <input required class="form-control" type="text" name="txtDomicilio" placeholder="Domicilio"><br>
-                    </div>
-                    <div class="col-12 col-md-2">
-                        Sueldo: <input required class="form-control" type="text" name="txtSueldo" placeholder="Sueldo"><br>
-                    </div>
-                </div>
-
-                <input required type="button" class="btn btn-primary" name="btnAceptarModificarEmpleado" value="Modificar" />
-            </fieldset>
-        </form>
-    </div>
-
-    <!--FORMULARIO DESPEDIR EMPLEADOS-->
-
-    <div class="container mt-4 divFormulario" id="despedirEmpleado">
-        <form name="frmDespedirEmpleado">
-            <fieldset>
-                <legend>Despedir empleado</legend>
-                <div class="row">
-                    <div class="col-12">
-                        DNI: <input required class="form-control" type="text" name="txtDNI" placeholder="DNI"><br>
-                    </div>
-                </div>
-                <input required type="button" class="btn btn-primary" name="btnAceptarBajaEmpleado" value="Despedir" />
-            </fieldset>
-        </form>
-    </div>
-
-    <!--FORMULARIO ASIGNAR LIMPIEZA-->
-
-    <div class="container mt-4 divFormulario" id="asignarLimpieza">
-        <form name="frmAsignarLimpieza">
-            <fieldset>
-                <legend>Asignar limpieza</legend>
-                <div class="row">
-                    <div class="col-12 col-md-2">
-                        ID Limpieza: <input required class="form-control" type="text" name="txtId" placeholder="ID Limpieza"><br>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        Fecha: <input required class="form-control" type="date" name="fecha"><br>
-                    </div>
-                    <div class="col-12 col-md-2">
-                        Hora: <input required class="form-control" type="text" name="txtHora" placeholder="Hora"><br>
-                    </div>
-                    <div class="col-12 col-md-2">
-                        DNI Empleado: <input required class="form-control" type="text" name="txtDNI" placeholder="DNI Empleado"><br>
-                    </div>
-                    <div class="col-12 col-md-2">
-                        ID Vivienda: <input required class="form-control" type="text" name="txtIDVivienda" placeholder="ID Vivienda"><br>
-                    </div>
-                </div>
-                <div class="row ml-4 mb-2">
-                    <input required type="checkbox" class="form-check-input required" name="chkFinalizado">Finalizado<br/>
-                </div>
-
-                <input required type="button" class="btn btn-primary" name="btnAceptarLimpieza" value="Asignar limpieza" />
-            </fieldset>
-        </form>
-    </div>
-
-    <!--FORMULARIO MODIFICAR LIMPIEZA-->
-
-    <div class="container mt-4 divFormulario" id="cargarLimpieza">
-        <form name="frmCargarLimpieza">
-            <fieldset>
-                <legend>Cargar Limpieza</legend>
-                <div class="row">
-                    <div class="col-12">
-                        ID Limpieza: <input required class="form-control" type="text" name="txtID" placeholder="ID Limpieza"><br>
-                    </div>
-                </div>
-                <input required type="button" class="btn btn-primary" name="btnCargarLimpieza" value="Cargar limpieza" />
-            </fieldset>
-        </form>
-    </div>
-
-    <div class="container mt-4 divFormulario" id="modificarLimpieza">
-        <form name="frmModificarLimpieza">
-            <fieldset>
-                <legend>Asignar limpieza</legend>
-                <div class="row">
-                    <div class="col-12 col-md-2">
-                        ID Limpieza: <input required class="form-control" type="text" name="txtId" placeholder="ID Limpieza" disabled><br>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        Fecha: <input required class="form-control" type="date" name="fecha"><br>
-                    </div>
-                    <div class="col-12 col-md-2">
-                        Hora: <input required class="form-control" type="text" name="txtHora" placeholder="Hora"><br>
-                    </div>
-                    <div class="col-12 col-md-2">
-                        DNI Empleado: <input required class="form-control" type="text" name="txtDNI" placeholder="DNI Empleado"><br>
-                    </div>
-                    <div class="col-12 col-md-2">
-                        ID Vivienda: <input required class="form-control" type="text" name="txtIDVivienda" placeholder="ID Vivienda"><br>
-                    </div>
-                </div>
-                <div class="row ml-4 mb-2">
-                    <input required type="checkbox" class="form-check-input required" name="chkFinalizado">Finalizado<br/>
-                </div>
-
-                <input required type="button" class="btn btn-primary" name="btnAceptarLimpieza" value="Modificar limpieza" />
-            </fieldset>
-        </form>
-    </div>
-
-    <!--FORMULARIO ELIMINAR LIMPIEZA-->
-
-    <div class="container mt-4 divFormulario" id="eliminarLimpieza">
-        <form name="frmEliminarLimpieza">
-            <fieldset>
-                <legend>Eliminar limpieza</legend>
-                <div class="row">
-                    <div class="col-12">
-                        ID Limpieza: <input required class="form-control" type="text" name="txtID" placeholder="ID Limpieza"><br>
-                    </div>
-                </div>
-                <input required type="button" class="btn btn-primary" name="btnAceptarEliminarLimpieza" value="Eliminar" />
-            </fieldset>
-        </form>
-    </div>
 
     <!--LISTADO-->
     <div class="container divFormulario" id="listados"></div>
 
+    <div id="dialog" title="Mensaje" style="display:none">
+        <p></p>
+    </div>
 
-    <!--Codigo js, clases-->
-    <script src="../js/objetos.js"></script>
-    <script src="../js/codigo.js"></script>
-    <script src="../js/codigo_interfaz.js"></script>
+    
 
     <!--Bootstrap, jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -689,10 +495,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
+
+<!--Codigo js, clases-->
+<script src="../js/objetos.js"></script>
+<script src="../js/codigo.js"></script>
+<script src="../js/codigo_interfaz.js"></script>
 </body>
 
 </html>

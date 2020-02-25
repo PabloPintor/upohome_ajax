@@ -1,5 +1,76 @@
 var oUPOHOME = new UPOHOME();
 
+//CAMBIAR DATEPICKER A ESPAÑOL
+$.datepicker.regional['es'] = {
+    closeText: 'Cerrar',
+    prevText: '< Ant',
+    nextText: 'Sig >',
+    currentText: 'Hoy',
+    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+    weekHeader: 'Sm',
+    dateFormat: 'dd/mm/yy',
+    firstDay: 1,
+    isRTL: false,
+    showMonthAfterYear: false,
+    yearSuffix: ''
+};
+$.datepicker.setDefaults($.datepicker.regional['es']);
+
+$(document).ready(function () {
+    //CARGAR DATEPICKER UI
+    var dateFormat = "dd/mm/yy";
+    var from1 = $(frmAlquilar.fechaInicio).datepicker()
+        .on( "change", function() {
+            to1.datepicker( "option", "minDate", getDate( this ) );
+        });
+    var to1 = $(frmAlquilar.fechaFin).datepicker()
+        .on( "change", function() {
+            from1.datepicker( "option", "maxDate", getDate( this ) );
+        });
+
+    var from2 = $(frmModificarAlquiler.fechaInicio).datepicker()
+        .on( "change", function() {
+            to2.datepicker( "option", "minDate", getDate( this ) );
+        });  
+    var to2 = $(frmModificarAlquiler.fechaFin).datepicker()
+        .on( "change", function() {
+            from2.datepicker( "option", "maxDate", getDate( this ) );
+        });
+    $(frmAsignarCita.fecha).datepicker();
+    $(frmModificarCita.fecha).datepicker();
+
+    //DIALOG
+    $( "#dialog" ).dialog({
+        autoOpen: false,
+        show: {
+          effect: "blind",
+          duration: 1000
+        },
+        hide: {
+          effect: "explode",
+          duration: 1000
+        }
+    });
+    
+
+
+    function getDate( element ) {
+        var date;
+        try {
+            date = $.datepicker.parseDate( dateFormat, element.value );
+        } catch( error ) {
+            date = null;
+        }
+        console.log(date);
+        
+        return date;
+    }
+});
+
 //ADD_EVENT_LISTENER
 //Cliente
 frmAltaCliente.btnAceptarAltaCliente.addEventListener("click", altaCliente,false);
@@ -70,12 +141,16 @@ function altaCliente(){
         // Alta de Cliente en el UPOHome
         let sMensaje = oUPOHOME.altaCliente(oCliente);
 
-        alert(sMensaje);
+        $('#dialog p').text(sMensaje);
+        $('#dialog').dialog('open');
         if(sMensaje == "Alta cliente OK") {
             ocultarFormularios(); 
         }
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
+        //$('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
     
 }
@@ -94,7 +169,8 @@ function cargarCliente(){
     if(bValido) {
         let oCliente = oUPOHOME.buscarCliente(sDni);
         if(oCliente == null){
-            alert("No se encuentran datos del cliente.");
+            $('#dialog p').text("No se encuentran datos del cliente.");
+            $('#dialog').dialog('open');
         }else{
             document.querySelector("#modificarCliente").style.display = "block";
             frmModificarCliente.txtNombre.value = oCliente.nombre;
@@ -104,7 +180,8 @@ function cargarCliente(){
             frmModificarCliente.txtDomicilio.value = oCliente.domicilio;
         }
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 }
 function modificarCliente(){
@@ -135,12 +212,14 @@ function modificarCliente(){
         // Alta de Cliente en el UPOHome
         let sMensaje = oUPOHOME.modificarCliente(sNombre, sApellidos, sDNI, iTelf, sDomicilio);
 
-        alert(sMensaje);
+        $('#dialog p').text(sMensaje);
+        $('#dialog').dialog('open');
         if(sMensaje == "Cliente modificado correctamente."){ 
             ocultarFormularios();
         }
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
         
 }
@@ -158,13 +237,15 @@ function borrarCliente(){
     if(bValido) { 
         let sMensaje = oUPOHOME.borrarCliente(sDni);
 
-        alert(sMensaje);
+        $('#dialog p').text(sMensaje);
+        $('#dialog').dialog('open');
         if(sMensaje == "Cliente eliminado correctamente."){
             ocultarFormularios();   
         }
         
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 }
 //-----------------------------------------------------------------------------------------------//
@@ -206,18 +287,22 @@ function altaAlquiler(){
 
                 let sMensaje = oUPOHOME.añadirAlquiler(oAlquiler);
 
-                alert(sMensaje);
+                $('#dialog p').text(sMensaje);
+                $('#dialog').dialog('open');
                 if(sMensaje == "Alquiler realizado con éxito"){
                     ocultarFormularios();   
                 }
             }else{
-                alert("No existe la vivienda.");
+                $('#dialog p').text("No existe la vivienda.");
+                $('#dialog').dialog('open');
             }
         }else{
-            alert("No existe el cliente.");
+            $('#dialog p').text("No existe el cliente.");
+            $('#dialog').dialog('open');
         }        
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 }
 function cargarAlquiler() {
@@ -234,7 +319,8 @@ function cargarAlquiler() {
     if(bValido){
         let oAlquiler = oUPOHOME.buscarAlquiler(idAlquiler);
         if(oAlquiler == null){
-            alert("No se encuentran datos del alquiler.");
+            $('#dialog p').text("No se encuentran datos del alquiler.");
+            $('#dialog').dialog('open');
         }else{
             document.querySelector("#modificarAlquiler").style.display = "block";
             frmModificarAlquiler.txtId.value = idAlquiler;
@@ -244,7 +330,8 @@ function cargarAlquiler() {
             frmModificarAlquiler.fechaFin.value = oAlquiler.fechaFin;
         } 
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
     
 } 
@@ -282,7 +369,8 @@ function modificarAlquiler(){
         if(oCliente != null){
             let sMensaje = oUPOHOME.modificarAlquiler(sId, sIdVivienda, sDNI, sFechaInicio, sFechaFin);
 
-            alert(sMensaje);
+            $('#dialog p').text(sMensaje);
+            $('#dialog').dialog('open');
             if(sMensaje == "Alquiler modificado correctamente."){ 
                 ocultarFormularios();
             }
@@ -291,7 +379,8 @@ function modificarAlquiler(){
         }
 
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 }
 function borrarAlquiler(){
@@ -309,13 +398,15 @@ function borrarAlquiler(){
     if(bValido){
         let sMensaje = oUPOHOME.borrarAlquiler(sId);
 
-        alert(sMensaje);
+        $('#dialog p').text(sMensaje);
+$('#dialog').dialog('open');
         if(sMensaje == "Alquiler eliminado correctamente."){
             ocultarFormularios();   
         }
         
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 }
 //-----------------------------------------------------------------------------------------------//
@@ -358,13 +449,15 @@ function agregarVivienda(){
 
         let sMensaje = oUPOHOME.agregarVivienda(oVivienda);
 
-        alert(sMensaje);
+        $('#dialog p').text(sMensaje);
+$('#dialog').dialog('open');
         if(sMensaje == "Alta vivienda OK"){
             ocultarFormularios();   
         }    
         
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 }
 function cargarVivienda(){
@@ -395,7 +488,8 @@ function cargarVivienda(){
 
         } 
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
       
 }
@@ -436,13 +530,15 @@ function modificarVivienda() {
         // Alta de Cliente en el UPOHome
         let sMensaje = oUPOHOME.modificarVivienda(idVivienda, direccion, estadoDisponibilidad, numHabitaciones, descripcion, exterior, climatizacion);
 
-        alert(sMensaje);
+        $('#dialog p').text(sMensaje);
+        $('#dialog').dialog('open');
         if(sMensaje == "Vivienda modificada correctamente."){ 
             ocultarFormularios();
         }
         
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 }
 function borrarVivienda() {
@@ -459,13 +555,15 @@ function borrarVivienda() {
     if(bValido){    
         let sMensaje = oUPOHOME.borrarVivivenda(idVivienda);
 
-        alert(sMensaje);
+        $('#dialog p').text(sMensaje);
+        $('#dialog').dialog('open');
         if(sMensaje == "Vivienda eliminada correctamente."){
             ocultarFormularios();   
         }
         
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 }
 //-----------------------------------------------------------------------------------------------//
@@ -505,7 +603,8 @@ function altaCita() {
                 let oCita = new Cita(iId, sDniCliente, sDniEmpleado, sFecha, sHora, sDescripcion);
                 let sMensaje = oUPOHOME.altaCita(oCita);
 
-                alert(sMensaje);
+                $('#dialog p').text(sMensaje);
+                $('#dialog').dialog('open');
 
                 ocultarFormularios();   
         }else{
@@ -513,7 +612,8 @@ function altaCita() {
         }
         
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 } 
 function cargarCita() {
@@ -542,7 +642,8 @@ function cargarCita() {
             frmModificarCita.txtDescripcion.value = oCita.descripcion;
         }
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 
 } 
@@ -580,7 +681,8 @@ function modificarCita() {
             if(oCliente != null){
                     let sMensaje = oUPOHOME.modificarCita(iId, sDniCliente, sDniEmpleado, sFecha, sHora, sDescripcion);
 
-                    alert(sMensaje);
+                    $('#dialog p').text(sMensaje);
+                    $('#dialog').dialog('open');
                     if(sMensaje == "Cita modificada correctamente."){
                         ocultarFormularios();
                     }
@@ -591,7 +693,8 @@ function modificarCita() {
         
         
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 } 
 function borrarCita() {
@@ -608,13 +711,15 @@ function borrarCita() {
     if(bValido){   
         let sMensaje = oUPOHOME.borrarCita(sId);
 
-        alert(sMensaje);
+        $('#dialog p').text(sMensaje);
+        $('#dialog').dialog('open');
         if(sMensaje == "Cita eliminada correctamente."){
             ocultarFormularios();   
         }
         
     }else{
-        alert(msgError);
+        $('#dialog p').text(msgError);
+        $('#dialog').dialog('open');
     }
 }
 
