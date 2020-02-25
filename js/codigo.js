@@ -21,16 +21,7 @@ frmAsignarCita.btnAceptarCita.addEventListener("click", altaCita, false);
 frmCargarCita.btnCargarCita.addEventListener("click", cargarCita, false);
 frmModificarCita.btnModificarCita.addEventListener("click", modificarCita, false);
 frmEliminarCita.btnEliminarCita.addEventListener("click", borrarCita, false);
-//Empleados
-frmcontratarEmpleado.btnAceptarContratarEmpleado.addEventListener("click", contratarEmpleado, false);
-frmCargarEmpleado.btnCargarEmpleado.addEventListener("click", cargarEmpleado, false);
-frmModificarEmpleado.btnAceptarModificarEmpleado.addEventListener("click", modificarEmpleado, false);
-frmDespedirEmpleado.btnAceptarBajaEmpleado.addEventListener("click", borrarEmpleado, false);
-//Limpieza
-frmAsignarLimpieza.btnAceptarLimpieza.addEventListener("click", asignarLimpieza, false);
-frmCargarLimpieza.btnCargarLimpieza.addEventListener("click", cargarLimpieza, false);
-frmModificarLimpieza.btnAceptarLimpieza.addEventListener("click", modificarLimpieza, false);
-frmEliminarLimpieza.btnAceptarEliminarLimpieza.addEventListener("click", borrarLimpieza, false);
+
 //-----------------------------------------------------------------------------------------------//
 //Datos de prueba
 oUPOHOME.rellenarArrays();
@@ -510,18 +501,13 @@ function altaCita() {
     }
     if(bValido){   
         let oCliente = oUPOHOME.buscarCliente(sDniCliente);
-        let oEmpleado = oUPOHOME.buscarEmpleado(sDniEmpleado);
         if(oCliente != null){
-            if(oEmpleado != null){
                 let oCita = new Cita(iId, sDniCliente, sDniEmpleado, sFecha, sHora, sDescripcion);
                 let sMensaje = oUPOHOME.altaCita(oCita);
 
                 alert(sMensaje);
 
                 ocultarFormularios();   
-            }else{
-                alert("No existe el empleado.");
-            }
         }else{
             alert("No existe el cliente");
         }
@@ -591,19 +577,13 @@ function modificarCita() {
     } 
     if(bValido){      
             let oCliente = oUPOHOME.buscarCliente(sDniCliente);
-            let oEmpleado = oUPOHOME.buscarEmpleado(sDniEmpleado);
             if(oCliente != null){
-                if(oEmpleado != null){
                     let sMensaje = oUPOHOME.modificarCita(iId, sDniCliente, sDniEmpleado, sFecha, sHora, sDescripcion);
 
                     alert(sMensaje);
                     if(sMensaje == "Cita modificada correctamente."){
                         ocultarFormularios();
                     }
-                    
-                }else{
-                    alert("No existe el empleado.");
-                }
             }else{
                 alert("No existe el cliente");
             }
@@ -630,309 +610,6 @@ function borrarCita() {
 
         alert(sMensaje);
         if(sMensaje == "Cita eliminada correctamente."){
-            ocultarFormularios();   
-        }
-        
-    }else{
-        alert(msgError);
-    }
-}
-//-----------------------------------------------------------------------------------------------//
-//EMPLEADO
-function contratarEmpleado(){
-    let bValido = true;
-    let msgError = "";
-    // Recoger valores del formulario
-    let sNombre = frmcontratarEmpleado.txtNombre.value.trim();
-    let sApellidos = frmcontratarEmpleado.txtApellidos.value.trim();
-    let sDNI = frmcontratarEmpleado.txtDNI.value.trim();
-    let iTelf = parseInt(frmcontratarEmpleado.txtTelefono.value);
-    let sDomicilio = frmcontratarEmpleado.txtDomicilio.value.trim();
-    let fSueldo = parseFloat(frmcontratarEmpleado.txtSueldo.value);
-
-    let oExpRegTelf = /^[0-9]{9}$/;
-    let oExpRegDNI = /^[0-9]{8}[a-zA-Z]$/;
-    let oExpRegFloat = /^([0-9]*[.])?[0-9]*$/;
-    if (!oExpRegTelf.test(iTelf)) {
-        msgError += "\nTelefono tiene una longitud de 9 numeros.";
-        bValido = false;
-    }
-    if (!oExpRegDNI.test(sDNI)) {
-        msgError += "\nDNI debe ser valido";
-        bValido = false;
-    }
-    if (!oExpRegFloat.test(fSueldo)) {
-        msgError += "\nSuelo debe ser un numero.";
-        bValido = false;
-    }
-
-    if(sNombre == "" || sApellidos == "" || sDomicilio == ""){
-        msgError += "\nDebes rellenar todos los campos.";
-        bValido = false;
-    }
-    if(bValido){
-        // Creamos el objeto Cliente
-        let oEmpleado = new Empleado(sNombre, sApellidos, sDNI, iTelf, fSueldo,sDomicilio);
-
-        // Alta de Cliente en el UPOHome
-        let sMensaje = oUPOHOME.altaEmpleado(oEmpleado);
-
-        alert(sMensaje);
-
-        ocultarFormularios();   
-    }else{
-        alert(msgError);
-    }
-}
-function cargarEmpleado() {
-    let bValido = true;
-    let msgError = "";
-
-    let sDni = frmCargarEmpleado.txtDNI.value.trim();
-    let oExpRegDNI = /^[0-9]{8}[a-zA-Z]$/;
-    if (!oExpRegDNI.test(sDni)) {
-        msgError += "\nDNI debe ser valido";
-        bValido = false;
-    }
-    if(bValido){
-        let oEmpleado = oUPOHOME.buscarEmpleado(sDni);
-        if(oEmpleado == null){
-            alert("No se encuentran datos del Empleado.");
-        }else{
-            document.querySelector("#modificarEmpleado").style.display = "block";
-            frmModificarEmpleado.txtNombre.value = oEmpleado.nombre;
-            frmModificarEmpleado.txtApellidos.value = oEmpleado.apellidos;
-            frmModificarEmpleado.txtDNI.value = sDni;
-            frmModificarEmpleado.txtTelefono.value = oEmpleado.telefono;
-            frmModificarEmpleado.txtDomicilio.value = oEmpleado.domicilio;
-            frmModificarEmpleado.txtSueldo.value = oEmpleado.salario;
-        }
-    }else{
-        alert(msgError);
-    }
-
-} 
-function modificarEmpleado() {
-    let bValido = true;
-    let msgError = "";
-
-    let sNombre = frmModificarEmpleado.txtNombre.value.trim();
-    let sApellidos = frmModificarEmpleado.txtApellidos.value.trim();
-    let sDNI = frmModificarEmpleado.txtDNI.value.trim();
-    let iTelf = parseInt(frmModificarEmpleado.txtTelefono.value);
-    let sDomicilio = frmModificarEmpleado.txtDomicilio.value.trim();
-    let fSueldo = parseFloat(frmModificarEmpleado.txtSueldo.value);
-
-    let oExpRegTelf = /^[0-9]{9}$/;
-    let oExpRegDNI = /^[0-9]{8}[a-zA-Z]$/;
-    let oExpRegFloat = /^([0-9]*[.])?[0-9]*$/;
-    if (!oExpRegTelf.test(iTelf)) {
-        msgError += "\nTelefono tiene una longitud de 9 numeros.";
-        bValido = false;
-    }
-    if (!oExpRegDNI.test(sDNI)) {
-        msgError += "\nDNI debe ser valido";
-        bValido = false;
-    }
-    if (!oExpRegFloat.test(fSueldo)) {
-        msgError += "\nSuelo debe ser un numero.";
-        bValido = false;
-    }
-
-    if(sNombre == "" || sApellidos == "" || sDomicilio == ""){
-        msgError += "\nDebes rellenar todos los campos.";
-        bValido = false;
-    }
-    if(bValido){
-        let sMensaje = oUPOHOME.modificarEmpleado(sNombre, sApellidos, sDNI, iTelf, fSueldo, sDomicilio);
-
-        alert(sMensaje);
-        if(sMensaje == "Empleado modificado correctamente."){ 
-            ocultarFormularios();
-        }
-        
-    }else{
-        alert(msgError);
-    }
-} 
-function borrarEmpleado () {
-    let bValido = true;
-    let msgError = "";
-
-    let sDni = frmDespedirEmpleado.txtDNI.value.trim();
-    let oExpRegDNI = /^[0-9]{8}[a-zA-Z]$/;
-    if (!oExpRegDNI.test(sDni)) {
-        msgError += "\nDNI debe ser valido";
-        bValido = false;
-    }
-    if(bValido){    
-        let sMensaje = oUPOHOME.borrarEmpleado(sDni);
-
-        alert(sMensaje);
-        if(sMensaje == "Empleado modificado correctamente."){
-            ocultarFormularios();   
-        }
-        
-    }else{
-        alert(msgError);
-    }
-}
-//-----------------------------------------------------------------------------------------------//
-//LIMPIEZA
-function asignarLimpieza() {
-    let bValido = true;
-    let msgError = "";
-
-    let iId = parseInt(frmAsignarLimpieza.txtId.value);
-    let sFecha = frmAsignarLimpieza.fecha.value.trim();
-    let sHora = frmAsignarLimpieza.txtHora.value.trim();
-    let sDniEmpleado = frmAsignarLimpieza.txtDNI.value.trim();
-    let idVivienda = parseInt(frmAsignarLimpieza.txtIDVivienda.value);
-    let bFinalizado = frmAsignarLimpieza.chkFinalizado.checked;
-    
-    let oExpRegID = /^[0-9]*$/;
-    let oExpRegDNI = /^[0-9]{8}[a-zA-Z]$/;
-    if (!oExpRegID.test(iId)) {
-        msgError += "\nID limpieza debe ser un numero.";
-        bValido = false;
-    }
-    if (!oExpRegDNI.test(sDniEmpleado)) {
-        msgError += "\nDNI debe ser valido.";
-        bValido = false;
-    }
-    if (!oExpRegID.test(idVivienda)) {
-        msgError += "\nID Vivienda debe ser un numero.";
-        bValido = false;
-    }
-    if(sFecha == "" || sHora == ""){
-        msgError += "\nDebes rellenar todos los campos.";
-        bValido = false;
-    }
-    if(bValido){ 
-            let oVivienda = oUPOHOME.buscarVivienda(idVivienda);
-            let oEmpleado = oUPOHOME.buscarEmpleado(sDniEmpleado);
-            if(oVivienda != null){
-                if(oEmpleado != null){
-                    let oLimpieza = new Limpieza(iId, sDniEmpleado, idVivienda, sFecha, sHora, bFinalizado);
-                    let sMensaje = oUPOHOME.añadirLimpieza(oLimpieza);
-    
-                    alert(sMensaje);
-                    if(sMensaje == "Limpieza asignada con exito"){
-                        ocultarFormularios();   
-                    }    
-                   
-                }else{
-                    alert("No existe el empleado.");
-                }
-            }else{
-                alert("No existe la vivienda");
-            }
-            
-        
-        
-    }else{
-        alert(msgError);
-    }
-}
-function cargarLimpieza() {
-    let bValido = true;
-    let msgError = "";
-    
-    let iIdLimpieza = parseInt(frmCargarLimpieza.txtID.value.trim());
-    let oExpRegID = /^[0-9]*$/;
-    if (!oExpRegID.test(iIdLimpieza)) {
-        msgError += "\nID limpieza debe ser un numero.";
-        bValido = false;
-    }
-    if(bValido){ 
-        let oLimpieza = oUPOHOME.buscarLimpieza(iIdLimpieza);
-        if(oLimpieza == null){
-            alert("No se encuentran datos de la limpieza.");
-        }else{
-            document.querySelector("#modificarLimpieza").style.display = "block";
-            frmModificarLimpieza.txtId.value = iIdLimpieza;
-            frmModificarLimpieza.fecha.value = oLimpieza.fecha;
-            frmModificarLimpieza.txtHora.value = oLimpieza.hora;
-            frmModificarLimpieza.txtDNI.value = oLimpieza.idEmpleado;
-            frmModificarLimpieza.txtIDVivienda.value = oLimpieza.idVivienda
-            frmModificarLimpieza.chkFinalizado.checked = oLimpieza.finalizado;
-        }   
-    }else{
-        alert(msgError);
-    }
-
-}
-function modificarLimpieza() {
-    let bValido = true;
-    let msgError = "";
-
-    let iId = parseInt(frmModificarLimpieza.txtId.value);
-    let sFecha = frmModificarLimpieza.fecha.value.trim();
-    let sHora = frmModificarLimpieza.txtHora.value.trim();
-    let sDniEmpleado = frmModificarLimpieza.txtDNI.value.trim();
-    let idVivienda = frmModificarLimpieza.txtIDVivienda.value.trim();
-    let bFinalizado = frmModificarLimpieza.chkFinalizado.checked;
-
-    let oExpRegID = /^[0-9]*$/;
-    let oExpRegDNI = /^[0-9]{8}[a-zA-Z]$/;
-    if (!oExpRegID.test(iId)) {
-        msgError += "\nID limpieza debe ser un numero.";
-        bValido = false;
-    }
-    if (!oExpRegDNI.test(sDniEmpleado)) {
-        msgError += "\nDNI debe ser valido.";
-        bValido = false;
-    }
-    if (!oExpRegID.test(idVivienda)) {
-        msgError += "\nID Vivienda debe ser un numero.";
-        bValido = false;
-    }
-    if(sFecha == "" || sHora == ""){
-        msgError += "\nDebes rellenar todos los campos.";
-        bValido = false;
-    }
-    if(bValido){ 
-        
-            let oVivienda = oUPOHOME.buscarVivienda(idVivienda);
-            let oEmpleado = oUPOHOME.buscarEmpleado(sDniEmpleado);
-            if(oVivienda != null){
-                if(oEmpleado != null){
-                    let sMensaje = oUPOHOME.modificarLimpieza(iId, sDniEmpleado, idVivienda, sFecha, sHora, bFinalizado);
-
-                    alert(sMensaje);
-                    if(sMensaje == "Limpieza modificada correctamente."){
-                        ocultarFormularios();
-                    }
-                    
-                }else{
-                    alert("No existe el empleado.");
-                }
-            }else{
-                alert("No existe la vivienda");
-            }
-            
-        
-        
-    }else{
-        alert(msgError);
-    }
-}
-function borrarLimpieza() {
-    let bValido = true;
-    let msgError = "";
-
-    let sId = frmEliminarLimpieza.txtID.value.trim();
-    let oExpRegID = /^[0-9]*$/;
-    if (!oExpRegID.test(sId)) {
-        msgError += "\nID limpieza debe ser un numero.";
-        bValido = false;
-    }
-    if(bValido){ 
-        
-        let sMensaje = oUPOHOME.borrarLimpieza(sId);
-
-        alert(sMensaje);
-        if(sMensaje == "Limpieza eliminada correctamente."){
             ocultarFormularios();   
         }
         

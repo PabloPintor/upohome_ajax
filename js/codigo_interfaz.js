@@ -73,42 +73,6 @@ document.getElementById("btnMenuEliminarCita").addEventListener("click", functio
     document.querySelector("#eliminarCita").style.display = "block";
 }, false);
 
-
-//EMPLEADOS
-
-document.getElementById("btnMenuContratarEmpleado").addEventListener("click", function() {
-    ocultarFormularios();
-    document.querySelector("#contratarEmpleado").style.display = "block";
-}, false);
-
-document.getElementById("btnMenuModEmpleado").addEventListener("click", function() {
-    ocultarFormularios();
-    document.querySelector("#cargarEmpleado").style.display = "block";
-}, false);
-
-document.getElementById("btnMenuDespedirEmpleado").addEventListener("click", function() {
-    ocultarFormularios();
-    document.querySelector("#despedirEmpleado").style.display = "block";
-}, false);
-
-
-//LIMPIEZA
-
-document.getElementById("btnMenuAsignarLimpieza").addEventListener("click", function() {
-    ocultarFormularios();
-    document.querySelector("#asignarLimpieza").style.display = "block";
-}, false);
-
-document.getElementById("btnMenuModLimpieza").addEventListener("click", function() {
-    ocultarFormularios();
-    document.querySelector("#cargarLimpieza").style.display = "block";
-}, false);
-
-document.getElementById("btnMenuEliminarLimpieza").addEventListener("click", function() {
-    ocultarFormularios();
-    document.querySelector("#eliminarLimpieza").style.display = "block";
-}, false);
-
 //LISTAR
 
 document.getElementById("btnListarViviendas").addEventListener("click", function() {

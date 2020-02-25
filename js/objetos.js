@@ -6,8 +6,6 @@ class UPOHOME{
         this.arrayClientes = [];
         this.arrayAlquileres = [];
         this.arrayCitas = [];
-        this.arrayEmpleados = [];
-        this.arrayLimpiezas = [];
         this.arrayViviendas = [];
     }
     //metodos
@@ -104,28 +102,6 @@ class UPOHOME{
 											cita.querySelector("fecha").textContent,
 											cita.querySelector("hora").textContent,
 											cita.querySelector("descripcion").textContent));
-		});
-		let arrayEmpleadosTemp = oXML.querySelectorAll("empleado");
-		let arrayEmpleados = Array();
-		arrayEmpleadosTemp.forEach(emplado => {
-			this.arrayEmpleados.push(new Empleado(emplado.querySelector("nombre").textContent,
-											emplado.querySelector("apellidos").textContent,
-											emplado.querySelector("dni").textContent,
-											emplado.querySelector("telefono").textContent,
-											emplado.querySelector("salario").textContent,
-											emplado.querySelector("domicilio").textContent));
-		});
-		let arrayLimpiezasTemp = oXML.querySelectorAll("limpieza");
-		let arrayLimpiezas = Array();
-
-		arrayLimpiezasTemp.forEach(limpieza => {
-			console.log(limpieza);
-			this.arrayLimpiezas.push(new Limpieza(limpieza.querySelector("idlimpieza").textContent,
-											limpieza.querySelector("idempleado").textContent,
-											limpieza.querySelector("idvivienda").textContent,
-											limpieza.querySelector("fecha").textContent,
-											limpieza.querySelector("hora").textContent,
-											limpieza.querySelector("finalizado").textContent));
 		});
 	}	
     altaCliente(oCliente) {
@@ -351,114 +327,6 @@ class UPOHOME{
         
         return sMensaje;
     }
-    //--//
-    altaEmpleado(oEmpleado) {
-        let sMensaje = "";
-
-        if (this.arrayEmpleados.filter(empleado => empleado.dni == oEmpleado.dni).length == 0) {
-            this.arrayEmpleados.push(oEmpleado);
-            sMensaje = "Alta Empleado OK";
-        } else {
-            sMensaje = "Ese ID Empleado ya estaba dado de alta";
-        }
-
-        return sMensaje;
-    }
-    buscarEmpleado(sDNI){
-        let resultado = null;
-
-        this.arrayEmpleados.forEach(empleado => {
-            if (empleado.dni == sDNI) {
-                resultado = empleado;
-            }
-        });
-
-        return resultado;
-    }
-    modificarEmpleado(sNombre, sApellidos, sDNI, iTelf, fSueldo, sDomicilio){
-        let sMensaje = "No se ha podido modificar el empleado.";
-
-        this.arrayEmpleados.forEach(empleado => {
-            if (empleado.dni == sDNI) {
-                empleado.nombre = sNombre;
-                empleado.apellidos = sApellidos;
-                empleado.telefono = iTelf;
-                empleado.salario = fSueldo;
-                empleado.domicilio = sDomicilio;
-
-                sMensaje = "Empleado modificado correctamente.";
-            }    
-        });
-
-        return sMensaje;
-    }
-    borrarEmpleado(sDni){
-        let sMensaje = "No se ha podido borrar el empleado.";
-        let oEmpleado = oUPOHOME.buscarEmpleado(sDni);
-        if(oEmpleado != null) {
-            let index = this.arrayEmpleados.indexOf(oEmpleado);
-            if (index > -1) {
-                this.arrayEmpleados.splice(index, 1);
-                sMensaje = "Empleado eliminado correctamente.";
-            }
-        }
-        
-        return sMensaje;
-    }
-    //--//
-    añadirLimpieza(oLimpieza) {
-        let sMensaje = "";
-
-        if (this.arrayLimpiezas.filter(limpieza => limpieza.idLimpieza == oLimpieza.idLimpieza).length == 0) {
-            this.arrayLimpiezas.push(oLimpieza);
-            sMensaje = "Limpieza asignada con exito";
-        } else {
-            sMensaje = "El ID de la limpieza esta duplicado";
-        }
-
-        return sMensaje;
-    }
-    buscarLimpieza(idLimpieza){
-        let resultado = null;
-
-        this.arrayLimpiezas.forEach(limpieza => {
-            if (limpieza.idLimpieza == idLimpieza) {
-                resultado = limpieza;
-            }
-        });
-
-        return resultado;
-    }
-    modificarLimpieza(sIdLimpieza, sIdEmpleado, sIdVivienda, sFecha, sHora, bFinalizado){
-        let sMensaje = "No se ha podido modificar la limpieza.";
-
-        this.arrayLimpiezas.forEach(limpieza => {
-            if (limpieza.idLimpieza == sIdLimpieza) {
-                limpieza.idEmpleado = sIdEmpleado;
-                limpieza.idVivienda = sIdVivienda;
-                limpieza.fecha = sFecha;
-                limpieza.hora = sHora;
-                limpieza.finalizado = bFinalizado;
-
-                sMensaje = "Limpieza modificada correctamente.";
-            }    
-        });
-
-        return sMensaje;
-    }
-    borrarLimpieza(sIdLimpieza){
-        let sMensaje = "No se ha podido borrar la limpieza.";
-        let oLimpieza = oUPOHOME.buscarLimpieza(sIdLimpieza);
-        if(oLimpieza != null) {
-            let index = this.arrayLimpiezas.indexOf(oLimpieza);
-            if (index > -1) {
-                this.arrayLimpiezas.splice(index, 1);
-                sMensaje = "Limpieza eliminada correctamente.";
-            }
-        }
-        
-        return sMensaje;
-    }
 
 }
 //----------------------------------------------------------------------------//
@@ -543,39 +411,6 @@ class Cita{
 
 }
 
-class Empleado{
-
-    constructor(nombre, apellidos, dni, telefono, salario, domicilio){
-        this.nombre = nombre;           //string
-        this.apellidos = apellidos;     //string
-        this.dni = dni;                 //dni
-        this.telefono = telefono;       //int
-        this.salario = salario;         //float
-        this.domicilio = domicilio;     //string
-    }
-
-    //metodos
-
-
-
-}
-
-class Limpieza{
-
-    constructor(idLimpieza, idEmpleado, idVivienda, fecha, hora, finalizado){
-        this.idLimpieza = idLimpieza    //int
-        this.idEmpleado = idEmpleado;   //string (Añadido)
-        this.idVivienda = idVivienda;   //int (Añadido)
-        this.fecha = fecha;             //Date
-        this.hora = hora;               //string
-        this.finalizado = finalizado;   //boolean
-    }
-
-    //metodos
-
-
-
-}
 function loadXMLDoc(filename) {
     let xhttp = null;
 
