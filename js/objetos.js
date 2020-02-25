@@ -109,6 +109,9 @@ class UPOHOME{
 
         if (this.arrayClientes.filter(cliente => cliente.dni == oCliente.dni).length == 0) {
             this.arrayClientes.push(oCliente);
+            $.post("../php/insertarClientes.php", {CLIENTE: JSON.stringify(oCliente)}, function (data, textStatus, jqXHR) {
+                
+            });
             sMensaje = "Alta cliente OK";
         } else {
             sMensaje = "El cliente ya estaba dado de alta";
@@ -150,6 +153,15 @@ class UPOHOME{
             let index = this.arrayClientes.indexOf(oCliente);
             if (index > -1) {
                 this.arrayClientes.splice(index, 1);
+                $.ajax({
+                    type : 'GET',
+                    url: "../php/borrarCliente.php",
+                    data: {DNI: sDni},
+                    //dataType: "script",
+                    success: function (response) {
+                        
+                    }
+                });
                 sMensaje = "Cliente eliminado correctamente.";
             }
         }
@@ -221,6 +233,9 @@ class UPOHOME{
 
         if (this.arrayViviendas.filter(vivienda => vivienda.idVivienda == oVivienda.idVivienda).length == 0) {
             this.arrayViviendas.push(oVivienda);
+            $.get("../php/insertarVivienda.php", {VIVIENDA: JSON.stringify(oVivienda)}, function (data, textStatus, jqXHR) {
+                    
+            });
             sMensaje = "Alta vivienda OK";
         } else {
             sMensaje = "La vivienda ya estaba dado de alta";
@@ -267,7 +282,17 @@ class UPOHOME{
             let index = this.arrayViviendas.indexOf(oVivienda);
             if (index > -1) {
                 this.arrayViviendas.splice(index, 1);
-                sMensaje = "Vivienda eliminada correctamente.";
+                //AJAX SIN JQUERY
+                var oAJAX = null;
+                oAJAX = objetoXHR();
+                var sParametros = "id="+idVivienda;
+                oAJAX.addEventListener("readystatechange", function(){
+                    sMensaje = "Vivienda eliminada correctamente.";
+                });
+                oAJAX.open("GET", encodeURI("../php/borrarVivienda.php?" + sParametros), true);
+                oAJAX.send(null);
+
+                
             }
         }
         

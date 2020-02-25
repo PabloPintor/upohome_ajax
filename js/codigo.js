@@ -21,6 +21,8 @@ $.datepicker.regional['es'] = {
 $.datepicker.setDefaults($.datepicker.regional['es']);
 
 $(document).ready(function () {
+    $.getScript("https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js");
+
     //CARGAR DATEPICKER UI
     var dateFormat = "dd/mm/yy";
     var from1 = $(frmAlquilar.fechaInicio).datepicker()
@@ -70,7 +72,21 @@ $(document).ready(function () {
         return date;
     }
 });
-
+function objetoXHR() {
+    if (window.XMLHttpRequest) {
+        // El navegador implementa la interfaz XHR de forma nativa
+        return new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+        var versionesIE = new Array('MsXML2.XMLHTTP.5.0', 'MsXML2.XMLHTTP.4.0',
+            'MsXML2.XMLHTTP.3.0', 'MsXML2.XMLHTTP', 'Microsoft.XMLHTTP');
+        for (var i = 0; i < versionesIE.length; i++) {
+            try {
+                return new ActiveXObject(versionesIE[i]);
+            } catch (errorControlado) {} //Capturamos el error,
+        }
+    }
+    throw new Error("No se pudo crear el objeto XMLHTTPRequest");
+}
 //ADD_EVENT_LISTENER
 //Cliente
 frmAltaCliente.btnAceptarAltaCliente.addEventListener("click", altaCliente,false);
