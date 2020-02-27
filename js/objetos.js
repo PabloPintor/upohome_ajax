@@ -284,11 +284,12 @@ class UPOHOME{
 
         return resultado;
     }
-    modificarVivienda(idVivienda, direccion, estadoDisponibilidad, numHabitaciones, descripcion, exterior, climatizacion){
+    modificarVivienda(idVivienda, precioAlquiler, direccion, estadoDisponibilidad, numHabitaciones, descripcion, exterior, climatizacion){
         let sMensaje = "No se ha podido modificar la vivienda.";
 
         this.arrayViviendas.forEach(vivienda => {
             if (vivienda.idVivienda == idVivienda) {
+                vivienda.precioAlquiler = precioAlquiler
                 vivienda.direccion = direccion;
                 vivienda.estadoDisponibilidad = estadoDisponibilidad;
                 vivienda.numHabitaciones = numHabitaciones;
@@ -296,6 +297,10 @@ class UPOHOME{
                 vivienda.exterior = exterior;
                 vivienda.climatizacion = climatizacion;
 
+                let oVivienda = oUPOHOME.buscarVivienda(idVivienda);
+                $.post("../php/modificarVivienda.php", {VIVIENDA: JSON.stringify(oVivienda)}, function (data, textStatus, jqXHR) {
+                        
+                });
                 sMensaje = "Vivienda modificada correctamente.";
             }    
         });
@@ -360,11 +365,18 @@ class UPOHOME{
 
         this.arrayCitas.forEach(cita => {
             if (cita.idCita == iId) {
+                let fechaArray = sFecha.split("/");
+                let fecha = fechaArray[2]+"-"+fechaArray[0]+"-"+fechaArray[1];
                 cita.dniCliente = sDniCliente;
-                cita.fecha = sFecha;
+                cita.fecha = fecha;
                 cita.hora = sHora;
                 cita.descripcion = sDescripcion;
 
+                let oCita = oUPOHOME.buscarCita(iId);
+                console.log(oCita);
+                $.post("../php/modificarCita.php", {CITA: JSON.stringify(oCita)}, function (data, textStatus, jqXHR) {
+                        
+                });
                 sMensaje = "Cita modificada correctamente.";
             }    
         });

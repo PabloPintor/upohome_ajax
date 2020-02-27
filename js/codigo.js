@@ -523,7 +523,7 @@ function modificarVivienda() {
 
     let idVivienda = parseInt(frmModificarVivienda.txtId.value.trim());
     let direccion = frmModificarVivienda.txtDireccion.value.trim();
-    let precioAlquiler = parseFloat(frmModificarVivienda.txtPrecio.value.trim());
+    let precioAlquiler = parseFloat(frmModificarVivienda.txtPrecio.value);
     let estadoDisponibilidad = frmModificarVivienda.chkDisponible.checked;
     let imgPrincipal = "";
     let numHabitaciones = parseInt(frmModificarVivienda.txtHabitaciones.value);
@@ -552,7 +552,7 @@ function modificarVivienda() {
     }
     if(bValido){
         // Alta de Cliente en el UPOHome
-        let sMensaje = oUPOHOME.modificarVivienda(idVivienda, direccion, estadoDisponibilidad, numHabitaciones, descripcion, exterior, climatizacion);
+        let sMensaje = oUPOHOME.modificarVivienda(idVivienda, precioAlquiler, direccion, estadoDisponibilidad, numHabitaciones, descripcion, exterior, climatizacion);
 
         $('#dialog p').text(sMensaje);
         $('#dialog').dialog('open');

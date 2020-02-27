@@ -4,7 +4,9 @@ $conexion->set_charset("utf8");
 
 $array = json_decode($_POST['CITA'], true);
 
-$SQL = "UPDATE `citas` SET `dni`= '".$array['dni']."',`fecha`= '".$array['fecha']."',`hora`= '".$array['hora']."',`descripcion`= '".$array['descripcion']."' WHERE `idCita` = '".$array['idCita']."'";
+
+
+$SQL = "UPDATE `citas` SET `dni`= '".$array['dniCliente']."',`fecha`= '".$array['fecha']."',`hora`= '".$array['hora']."',`descripcion`= '".$array['descripcion']."' WHERE `idCita` = '".$array['idCita']."'";
 $resultado = $conexion->query($SQL);
 
 ?>
