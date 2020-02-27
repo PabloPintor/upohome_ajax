@@ -59,7 +59,21 @@ class UPOHOME{
     
         document.querySelector("#listados").appendChild(oTabla);
     }
-
+    rellenarArrays(){
+        var arrayClientesTemp = this.arrayClientes;
+        $.post("../php/getClientes.php", {}, function (data, textStatus, jqXHR) {
+            console.log(this.arrayClientes);
+            for (var i = 0; i < data.length; i++) {
+                arrayClientesTemp.push(new Cliente(data[i].nombre,
+                                                    data[i].apellidos,
+                                                    data[i].dniCliente,
+                                                    data[i].telefono,
+                                                    data[i].domicilio,
+                                                    data[i].esPropietario));
+            }
+        },"json");
+    }
+    /*
 	rellenarArrays(){
 		let oXML = loadXMLDoc("../pisos.xml");
 		let arrayViviendasTemp = oXML.querySelectorAll("vivienda");
@@ -103,7 +117,7 @@ class UPOHOME{
 											cita.querySelector("hora").textContent,
 											cita.querySelector("descripcion").textContent));
 		});
-	}	
+	}	*/
     altaCliente(oCliente) {
         let sMensaje = "";
 
@@ -174,6 +188,9 @@ class UPOHOME{
 
         if (this.arrayAlquileres.filter(alquiler => alquiler.idAlquiler == oAlquiler.idAlquiler).length == 0) {
             this.arrayAlquileres.push(oAlquiler);
+            $.post("../php/insertarAlquiler.php", {ALQUILER: JSON.stringify(oAlquiler)}, function (data, textStatus, jqXHR) {
+                
+            });
             sMensaje = "Alquiler realizado con éxito";
         } else {
             sMensaje = "El ID del alquiler esta duplicado";

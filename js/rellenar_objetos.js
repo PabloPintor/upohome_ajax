@@ -1,3 +1,12 @@
+$.post("../php/getClientes.php", {}, function (data, textStatus, jqXHR) {
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+            console.log("azuca");
+        }
+},"json");
+
+
+/*
 let oXML = loadXMLDoc("../pisos.xml");
 let arrayViviendasTemp = oXML.querySelectorAll("vivienda");
 let arrayViviendas = Array();
@@ -45,27 +54,6 @@ arrayCitasTemp.forEach(cita => {
                                     cita.querySelector("descripcion").textContent));
 });
 
-let arrayEmpleadosTemp = oXML.querySelectorAll("empleado");
-let arrayEmpleados = Array();
-arrayEmpleadosTemp.forEach(emplado => {
-    arrayEmpleados.push(new Empleado(emplado.querySelector("nombre").textContent,
-                                    emplado.querySelector("apellidos").textContent,
-                                    emplado.querySelector("dni").textContent,
-                                    emplado.querySelector("telefono").textContent,
-                                    emplado.querySelector("salario").textContent,
-                                    emplado.querySelector("domicilio").textContent));
-});
-
-let arrayLimpiezasTemp = oXML.querySelectorAll("empleado");
-let arrayLimpiezas = Array();
-arrayLimpiezasTemp.forEach(limpieza => {
-    arrayLimpiezas.push(new Limpieza(limpieza.querySelector("nombre").textContent,
-                                    limpieza.querySelector("apellidos").textContent,
-                                    limpieza.querySelector("dni").textContent,
-                                    limpieza.querySelector("telefono").textContent,
-                                    limpieza.querySelector("salario").textContent,
-                                    limpieza.querySelector("domicilio").textContent));
-});
 
 function loadXMLDoc(filename) {
     let xhttp = null;
@@ -80,3 +68,4 @@ function loadXMLDoc(filename) {
 
     return xhttp.responseXML;
 }
+*/

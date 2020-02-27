@@ -22,6 +22,7 @@ $.datepicker.setDefaults($.datepicker.regional['es']);
 
 $(document).ready(function () {
     $.getScript("https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js");
+    oUPOHOME.rellenarArrays();
 
     //CARGAR DATEPICKER UI
     var dateFormat = "dd/mm/yy";
@@ -111,7 +112,7 @@ frmEliminarCita.btnEliminarCita.addEventListener("click", borrarCita, false);
 
 //-----------------------------------------------------------------------------------------------//
 //Datos de prueba
-oUPOHOME.rellenarArrays();
+//oUPOHOME.rellenarArrays();
 /*
     oUPOHOME.altaCliente(new Cliente("Manuel Esteban", "Rodríguez Gómez", "1", "608995074", "Larra 29", false));
     oUPOHOME.altaCliente(new Cliente("Pablo", "Pintor Álvarez", "2", "666888111", "Roble 32", false));
