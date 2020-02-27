@@ -23,6 +23,9 @@ $.datepicker.setDefaults($.datepicker.regional['es']);
 */
 $(document).ready(function () {
     $.getScript("https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js");
+    $('#navbar').load("navbar.html", {}, function (response, status, request) {
+        $.getScript("../js/codigo_interfaz.js");
+    });
     oUPOHOME.rellenarArrays();
 
     //CARGAR DATEPICKER UI
