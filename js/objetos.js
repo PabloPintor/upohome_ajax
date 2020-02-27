@@ -106,8 +106,6 @@ class UPOHOME{
         //CITAS
         $.post("../php/getCitas.php", {}, function (data, textStatus, jqXHR) {
             for (var i = 0; i < data.length; i++) { 
-                console.log(data[i].descripcion);
-                
                 arrayCitasTemp.push(new Cita(data[i].idCita,
                                             data[i].dni,
                                             data[i].fecha,
@@ -187,6 +185,7 @@ class UPOHOME{
 
         if (this.arrayAlquileres.filter(alquiler => alquiler.idAlquiler == oAlquiler.idAlquiler).length == 0) {
             this.arrayAlquileres.push(oAlquiler);
+            console.log(oAlquiler);
             $.post("../php/insertarAlquiler.php", {ALQUILER: JSON.stringify(oAlquiler)}, function (data, textStatus, jqXHR) {
                 
             });

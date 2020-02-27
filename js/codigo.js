@@ -1,6 +1,7 @@
 var oUPOHOME = new UPOHOME();
 
 //CAMBIAR DATEPICKER A ESPAÑOL
+/*
 $.datepicker.regional['es'] = {
     closeText: 'Cerrar',
     prevText: '< Ant',
@@ -19,13 +20,13 @@ $.datepicker.regional['es'] = {
     yearSuffix: ''
 };
 $.datepicker.setDefaults($.datepicker.regional['es']);
-
+*/
 $(document).ready(function () {
     $.getScript("https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js");
     oUPOHOME.rellenarArrays();
 
     //CARGAR DATEPICKER UI
-    var dateFormat = "dd/mm/yy";
+    var dateFormat = "mm/dd/yyyy";
     var from1 = $(frmAlquilar.fechaInicio).datepicker()
         .on( "change", function() {
             to1.datepicker( "option", "minDate", getDate( this ) );
@@ -68,8 +69,7 @@ $(document).ready(function () {
         } catch( error ) {
             date = null;
         }
-        console.log(date);
-        
+
         return date;
     }
 });
@@ -642,7 +642,6 @@ function cargarCita() {
     }
     if(bValido){   
         let oCita = oUPOHOME.buscarCita(sId);
-        console.log(oCita);
         if(oCita == null){
             alert("No existe cita con ese ID.");
         }else{
