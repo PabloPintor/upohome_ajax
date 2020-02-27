@@ -15,28 +15,6 @@ $.post("php/getViviendas.php", {}, function (data, textStatus, jqXHR) {
     
 },"json");
 
-
-/*
-let oXML = loadXMLDoc("pisos.xml");
-let arrayViviendasTemp = oXML.querySelectorAll("vivienda");
-let arrayViviendas = Array();
-arrayViviendasTemp.forEach(vivienda => {
-    arrayViviendas.push(new Vivienda(vivienda.querySelector("idvivienda").textContent,
-                                    vivienda.querySelector("direccion").textContent,
-                                    vivienda.querySelector("precioalquiler").textContent,
-                                    vivienda.querySelector("estadodisponibilidad").textContent,
-                                    vivienda.querySelector("imgprincipal").textContent,
-                                    vivienda.querySelector("numhabitaciones").textContent,
-                                    vivienda.querySelector("descripcion").textContent,
-                                    vivienda.querySelector("exterior").textContent,
-                                    vivienda.querySelector("climatizacion").textContent, null));
-});
-
-arrayViviendasTemp.forEach(vivienda => {
-    console.log("HOLA");
-    añadirVivienda(vivienda);
-});
-*/
 function añadirVivienda(oVivienda) {
     let divPisos = document.querySelector("#divViviendas");
     let divCard = document.createElement("DIV");
