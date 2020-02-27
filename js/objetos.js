@@ -322,6 +322,10 @@ class UPOHOME{
 
         if (this.arrayCitas.filter(cita => cita.idCita == oCita.idCita).length == 0) {
             this.arrayCitas.push(oCita);
+            console.log(oCita);
+            $.post("../php/insertarCita.php", {CITA: JSON.stringify(oCita)}, function (data, textStatus, jqXHR) {
+                    
+            });
             sMensaje = "Alta Cita OK";
         } else {
             sMensaje = "Ese ID Cita ya estaba dado de alta";
@@ -363,6 +367,9 @@ class UPOHOME{
             let index = this.arrayCitas.indexOf(oCita);
             if (index > -1) {
                 this.arrayCitas.splice(index, 1);
+                $.post("../php/borrarCita.php", {CITA: sId}, function (data, textStatus, jqXHR) {
+                        
+                });
                 sMensaje = "Cita eliminada correctamente.";
             }
         }

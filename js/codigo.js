@@ -392,7 +392,8 @@ function modificarAlquiler(){
                 ocultarFormularios();
             }
         }else{
-            alert("No existe el cliente.");
+            $('#dialog p').text("No existe el cliente.");
+            $('#dialog').dialog('open');
         }
 
     }else{
@@ -491,7 +492,8 @@ function cargarVivienda(){
     if(bValido){
         let oVivienda = oUPOHOME.buscarVivienda(idVivienda);
         if(oVivienda == null){
-            alert("No se encuentran datos de la vivienda.");
+            $('#dialog p').text("No se encuentran datos de la vivienda.");
+            $('#dialog').dialog('open');
         }else{
             document.querySelector("#modificarVivienda").style.display = "block";
             frmModificarVivienda.txtId.value = idVivienda;
@@ -620,7 +622,8 @@ function altaCita() {
 
                 ocultarFormularios();   
         }else{
-            alert("No existe el cliente");
+            $('#dialog p').text("No existe el cliente");
+            $('#dialog').dialog('open');
         }
         
     }else{
@@ -643,7 +646,8 @@ function cargarCita() {
     if(bValido){   
         let oCita = oUPOHOME.buscarCita(sId);
         if(oCita == null){
-            alert("No existe cita con ese ID.");
+            $('#dialog p').text("No existe cita con ese ID.");
+            $('#dialog').dialog('open');
         }else{
             document.querySelector("#modificarCita").style.display = "block";
             frmModificarCita.txtId.value = sId;
@@ -693,7 +697,8 @@ function modificarCita() {
                         ocultarFormularios();
                     }
             }else{
-                alert("No existe el cliente");
+                $('#dialog p').text("No existe el cliente");
+                $('#dialog').dialog('open');
             }
             
         
