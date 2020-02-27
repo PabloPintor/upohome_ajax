@@ -170,7 +170,7 @@ class UPOHOME{
                 $.ajax({
                     type : 'GET',
                     url: "../php/borrarCliente.php",
-                    data: {DNI: sDni},
+                    data: "DNI="+sDni,
                     //dataType: "script",
                     success: function (response) {
                         
@@ -480,18 +480,4 @@ class Cita{
 
     
 
-}
-
-function loadXMLDoc(filename) {
-    let xhttp = null;
-
-    if (window.XMLHttpRequest) {
-        xhttp = new XMLHttpRequest();
-    } else { // code for IE5 and IE6
-        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xhttp.open("GET", filename, false);
-    xhttp.send();
-
-    return xhttp.responseXML;
 }
