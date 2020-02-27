@@ -340,11 +340,16 @@ function cargarAlquiler() {
             $('#dialog').dialog('open');
         }else{
             document.querySelector("#modificarAlquiler").style.display = "block";
+            console.log(oAlquiler);
+            let fechaInicioArray = oAlquiler.fechaInicio.split("-");
+            let fechaFinArray = oAlquiler.fechaFin.split("-");
+            let fechaInicio = fechaInicioArray[1]+"/"+fechaInicioArray[2]+"/"+fechaInicioArray[0];
+            let fechaFin = fechaFinArray[1]+"/"+fechaFinArray[2]+"/"+fechaFinArray[0];
             frmModificarAlquiler.txtId.value = idAlquiler;
             frmModificarAlquiler.txtIdVivienda.value = oAlquiler.idVivienda;
             frmModificarAlquiler.txtDNI.value = oAlquiler.dniCliente;
-            frmModificarAlquiler.fechaInicio.value = oAlquiler.fechaInicio;
-            frmModificarAlquiler.fechaFin.value = oAlquiler.fechaFin;
+            frmModificarAlquiler.fechaInicio.value = fechaInicio;
+            frmModificarAlquiler.fechaFin.value = fechaFin;
         } 
     }else{
         $('#dialog p').text(msgError);
@@ -650,8 +655,10 @@ function cargarCita() {
             $('#dialog').dialog('open');
         }else{
             document.querySelector("#modificarCita").style.display = "block";
+            let fechaArray = oCita.fecha.split("-");
+            let fecha = fechaArray[1]+"/"+fechaArray[2]+"/"+fechaArray[0];
             frmModificarCita.txtId.value = sId;
-            frmModificarCita.fecha.value = oCita.fecha;
+            frmModificarCita.fecha.value = fecha;
             frmModificarCita.txtHora.value = oCita.hora;
             frmModificarCita.txtDNICliente.value = oCita.dniCliente;
             frmModificarCita.txtDescripcion.value = oCita.descripcion;

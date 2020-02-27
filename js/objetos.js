@@ -150,7 +150,10 @@ class UPOHOME{
                 cliente.apellidos = sApellidos;
                 cliente.telefono = iTelf;
                 cliente.domicilio = sDomicilio;
-
+                let oCliente = oUPOHOME.buscarCliente(sDNI);
+                $.post("../php/modificarCliente.php", {CLIENTE: JSON.stringify(oCliente)}, function (data, textStatus, jqXHR) {
+                        
+                });
                 sMensaje = "Cliente modificado correctamente.";
             }    
         });
@@ -215,11 +218,19 @@ class UPOHOME{
 
         this.arrayAlquileres.forEach(alquiler => {
             if (alquiler.idAlquiler == sIdAlquiler) {
+                let fechaInicioArray = dFechaInicio.split("/");
+                let fechaFinArray = dFechaFin.split("/");
+                let fechaInicio = fechaInicioArray[2]+"-"+fechaInicioArray[0]+"-"+fechaInicioArray[1];
+                let fechaFin = fechaFinArray[2]+"-"+fechaFinArray[0]+"-"+fechaFinArray[1];
                 alquiler.dniCliente = sDniCliente;
                 alquiler.idVivienda = sIdVivienda;
-                alquiler.fechaInicio = dFechaInicio;
-                alquiler.fechaFin = dFechaFin;
+                alquiler.fechaInicio = fechaInicio;
+                alquiler.fechaFin = fechaFin;
 
+                let oAlquiler = oUPOHOME.buscarAlquiler(sIdAlquiler);
+                $.post("../php/modificarAlquiler.php", {ALQUILER: JSON.stringify(oAlquiler)}, function (data, textStatus, jqXHR) {
+                        
+                });
                 sMensaje = "Alquiler modificado correctamente.";
             }    
         });
