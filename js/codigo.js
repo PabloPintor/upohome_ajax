@@ -593,7 +593,6 @@ function altaCita() {
     let sFecha = frmAsignarCita.fecha.value.trim();
     let sHora = frmAsignarCita.txtHora.value.trim();
     let sDniCliente  = frmAsignarCita.txtDNICliente.value.trim();
-    let sDniEmpleado = frmAsignarCita.txtDNI.value.trim();
     let sDescripcion = frmAsignarCita.txtDescripcion.value.trim();
 
     let oExpRegID = /^[0-9]*$/;
@@ -606,10 +605,6 @@ function altaCita() {
         msgError += "\nDNI cliente debe ser un numero.";
         bValido = false;
     }
-    if (!oExpRegDNI.test(sDniEmpleado)) {
-        msgError += "\nDNI empleado debe ser un numero.";
-        bValido = false;
-    }
     if(sFecha == "" || sHora == "" || sDescripcion == ""){
         msgError += "\nDebes rellenar todos los campos.";
         bValido = false;
@@ -617,7 +612,7 @@ function altaCita() {
     if(bValido){   
         let oCliente = oUPOHOME.buscarCliente(sDniCliente);
         if(oCliente != null){
-                let oCita = new Cita(iId, sDniCliente, sDniEmpleado, sFecha, sHora, sDescripcion);
+                let oCita = new Cita(iId, sDniCliente, sFecha, sHora, sDescripcion);
                 let sMensaje = oUPOHOME.altaCita(oCita);
 
                 $('#dialog p').text(sMensaje);
@@ -647,6 +642,7 @@ function cargarCita() {
     }
     if(bValido){   
         let oCita = oUPOHOME.buscarCita(sId);
+        console.log(oCita);
         if(oCita == null){
             alert("No existe cita con ese ID.");
         }else{
@@ -655,7 +651,6 @@ function cargarCita() {
             frmModificarCita.fecha.value = oCita.fecha;
             frmModificarCita.txtHora.value = oCita.hora;
             frmModificarCita.txtDNICliente.value = oCita.dniCliente;
-            frmModificarCita.txtDNI.value = oCita.dniEmpleado;
             frmModificarCita.txtDescripcion.value = oCita.descripcion;
         }
     }else{
@@ -672,7 +667,6 @@ function modificarCita() {
     let sFecha = frmModificarCita.fecha.value.trim();
     let sHora = frmModificarCita.txtHora.value.trim();
     let sDniCliente  = frmModificarCita.txtDNICliente.value.trim();
-    let sDniEmpleado = frmModificarCita.txtDNI.value.trim();
     let sDescripcion = frmModificarCita.txtDescripcion.value.trim();
 
     let oExpRegID = /^[0-9]*$/;
@@ -685,10 +679,6 @@ function modificarCita() {
         msgError += "\nDNI cliente debe ser un numero.";
         bValido = false;
     }
-    if (!oExpRegDNI.test(sDniEmpleado)) {
-        msgError += "\nDNI empleado debe ser un numero.";
-        bValido = false;
-    }
     if(sFecha == "" || sHora == "" || sDescripcion == ""){
         msgError += "\nDebes rellenar todos los campos.";
         bValido = false;
@@ -696,7 +686,7 @@ function modificarCita() {
     if(bValido){      
             let oCliente = oUPOHOME.buscarCliente(sDniCliente);
             if(oCliente != null){
-                    let sMensaje = oUPOHOME.modificarCita(iId, sDniCliente, sDniEmpleado, sFecha, sHora, sDescripcion);
+                    let sMensaje = oUPOHOME.modificarCita(iId, sDniCliente, sFecha, sHora, sDescripcion);
 
                     $('#dialog p').text(sMensaje);
                     $('#dialog').dialog('open');

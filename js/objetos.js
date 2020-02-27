@@ -61,8 +61,12 @@ class UPOHOME{
     }
     rellenarArrays(){
         var arrayClientesTemp = this.arrayClientes;
+        var arrayAlquileresTemp = this.arrayAlquileres;
+        var arrayViviendasTemp = this.arrayViviendas;
+        var arrayCitasTemp = this.arrayCitas;
+
+        //CLIENTES
         $.post("../php/getClientes.php", {}, function (data, textStatus, jqXHR) {
-            console.log(this.arrayClientes);
             for (var i = 0; i < data.length; i++) {
                 arrayClientesTemp.push(new Cliente(data[i].nombre,
                                                     data[i].apellidos,
@@ -72,52 +76,47 @@ class UPOHOME{
                                                     data[i].esPropietario));
             }
         },"json");
+
+        //ALQUILERES
+        $.post("../php/getAlquileres.php", {}, function (data, textStatus, jqXHR) {
+            for (var i = 0; i < data.length; i++) {
+                arrayAlquileresTemp.push(new Alquiler(data[i].idAlquiler,
+                                                    data[i].idVivienda,
+                                                    data[i].dniCliente,
+                                                    data[i].fechaInicio,
+                                                    data[i].fechaFin));
+            }
+        },"json");
+
+        //VIVIENDAS
+        $.post("../php/getViviendas.php", {}, function (data, textStatus, jqXHR) {
+            for (var i = 0; i < data.length; i++) { 
+                arrayViviendasTemp.push(new Vivienda(data[i].idVivienda,
+                                                    data[i].direccion,
+                                                    data[i].precioAlquiler,
+                                                    data[i].estadoDisponibilidad,
+                                                    data[i].imgPrincipal,
+                                                    data[i].numHabitaciones,
+                                                    data[i].descripcion,
+                                                    data[i].exterior,
+                                                    data[i].climatizacion));
+            }
+        },"json");
+
+        //CITAS
+        $.post("../php/getCitas.php", {}, function (data, textStatus, jqXHR) {
+            for (var i = 0; i < data.length; i++) { 
+                console.log(data[i].descripcion);
+                
+                arrayCitasTemp.push(new Cita(data[i].idCita,
+                                            data[i].dni,
+                                            data[i].fecha,
+                                            data[i].hora,
+                                            data[i].descripcion));
+            }
+        },"json");
     }
-    /*
-	rellenarArrays(){
-		let oXML = loadXMLDoc("../pisos.xml");
-		let arrayViviendasTemp = oXML.querySelectorAll("vivienda");
-		arrayViviendasTemp.forEach(vivienda => {
-			this.arrayViviendas.push(new Vivienda(vivienda.querySelector("idvivienda").textContent,
-											vivienda.querySelector("direccion").textContent,
-											vivienda.querySelector("precioalquiler").textContent,
-											vivienda.querySelector("estadodisponibilidad").textContent,
-											vivienda.querySelector("imgprincipal").textContent,
-											vivienda.querySelector("numhabitaciones").textContent,
-											vivienda.querySelector("descripcion").textContent,
-											vivienda.querySelector("exterior").textContent,
-											vivienda.querySelector("climatizacion").textContent, null));
-		});
-		let arrayClientesTemp = oXML.querySelectorAll("cliente");
-		let arrayClientes = Array();
-		arrayClientesTemp.forEach(cliente => {
-			this.arrayClientes.push(new Cliente(cliente.querySelector("nombre").textContent,
-											cliente.querySelector("apellidos").textContent,
-											cliente.querySelector("dni").textContent,
-											cliente.querySelector("telefono").textContent,
-											cliente.querySelector("domicilio").textContent,
-											cliente.querySelector("espropietario").textContent));
-		});
-		let arrayAlquileresTemp = oXML.querySelectorAll("alquiler");
-		let arrayAlquileres = Array();
-		arrayAlquileresTemp.forEach(alquiler => {
-			this.arrayAlquileres.push(new Alquiler(alquiler.querySelector("idalquiler").textContent,
-											alquiler.querySelector("idvivienda").textContent,
-											alquiler.querySelector("dnicliente").textContent,
-											alquiler.querySelector("fechainicio").textContent,
-											alquiler.querySelector("fechafin").textContent));
-		});
-		let arrayCitasTemp = oXML.querySelectorAll("cita");
-		let arrayCitas = Array();
-		arrayCitasTemp.forEach(cita => {
-			this.arrayCitas.push(new Cita(cita.querySelector("idcita").textContent,
-											cita.querySelector("dnicliente").textContent,
-											cita.querySelector("dniempleado").textContent,
-											cita.querySelector("fecha").textContent,
-											cita.querySelector("hora").textContent,
-											cita.querySelector("descripcion").textContent));
-		});
-	}	*/
+    
     altaCliente(oCliente) {
         let sMensaje = "";
 
@@ -339,13 +338,12 @@ class UPOHOME{
 
         return resultado;
     }
-    modificarCita(iId, sDniCliente, sDniEmpleado, sFecha, sHora, sDescripcion){
+    modificarCita(iId, sDniCliente, sFecha, sHora, sDescripcion){
         let sMensaje = "No se ha podido modificar la cita.";
 
         this.arrayCitas.forEach(cita => {
             if (cita.idCita == iId) {
                 cita.dniCliente = sDniCliente;
-                cita.dniEmpleado = sDniEmpleado;
                 cita.fecha = sFecha;
                 cita.hora = sHora;
                 cita.descripcion = sDescripcion;
@@ -438,10 +436,9 @@ class Vivienda{
 
 class Cita{
 
-    constructor(idCita, dniCliente, dniEmpleado, fecha, hora, descripcion){
+    constructor(idCita, dniCliente, fecha, hora, descripcion){
         this.idCita = idCita;               //int
         this.dniCliente = dniCliente;       //String
-        this.dniEmpleado = dniEmpleado;     //String
         this.fecha = fecha;                 //date
         this.hora = hora;                   //string
         this.descripcion = descripcion;     //string
