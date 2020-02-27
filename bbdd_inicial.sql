@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-02-2020 a las 09:42:38
--- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.11
+-- Tiempo de generación: 27-02-2020 a las 20:15:11
+-- Versión del servidor: 10.3.16-MariaDB
+-- Versión de PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,7 +44,7 @@ CREATE TABLE `alquileres` (
 
 INSERT INTO `alquileres` (`idAlquiler`, `dniCliente`, `idVivienda`, `fechaInicio`, `fechaFin`) VALUES
 (1, '12345678W', 1, '2020-02-12', '2020-04-22'),
-(2, '98765432S', 2, '2020-02-10', '2020-05-19');
+(2, '98765432S', 2, '2020-02-26', '2020-02-28');
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE `citas` (
 
 INSERT INTO `citas` (`idCita`, `dni`, `fecha`, `hora`, `descripcion`) VALUES
 (1, '12345678W', '2020-02-12', '12:00:00', 'Cita sobre rotura de la ventana del dormitorio'),
-(2, '98765432S', '2020-02-14', '19:00:00', 'Negociacion del precio del piso en alquiler');
+(2, '12345678W', '2020-02-28', '21:00:00', 'Negociacion del precio del piso en alquiler');
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,7 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`dniCliente`, `nombre`, `apellidos`, `telefono`, `domicilio`, `esPropietario`) VALUES
-('12345678W', 'Pablo', 'Pintor', '765765765', 'Calle Falsa 123', 'n'),
+('12345678W', 'Pablo', 'Pintor Alvarez', '765765765', 'Calle Falsa 123', 'n'),
 ('98765432S', 'Manuel Esteban', 'Rodriguez', '987987987', 'Calle Fake 257', 's');
 
 -- --------------------------------------------------------
@@ -114,8 +114,8 @@ CREATE TABLE `viviendas` (
 --
 
 INSERT INTO `viviendas` (`idVivienda`, `direccion`, `precioAlquiler`, `estadoDisponibilidad`, `imgPrincipal`, `numHabitaciones`, `descripcion`, `exterior`, `climatizacion`) VALUES
-(1, 'Calle Vivienda 1', 250.56, 's', 'img/casa1.jpg', 3, 'Casa en el centro de Madrid. Temperatura perfecta, ni frio ni calor; 0 grados', 'Un balcon de 2 metros cuadrados', 'n'),
-(2, 'Calle de abajo', 280.65, 'n', 'img/casa2.jpg', 2, 'Casa rural a las afueras de albacete. La ducha es el rio de al lado', 'Mucho campo', 's');
+(1, 'Calle Vivienda ', 250.56, 's', 'piso1.jpg', 3, 'Casa en el centro de Madrid. Temperatura perfecta, ni frio ni calor; 0 grados', 'Un balcon de 2 metros cuadrados', 'n'),
+(2, 'Calle de abajo', 280.65, 's', 'piso2.jpg', 2, 'Casa rural a las afueras de albacete. La ducha es el rio de al lado', 'Mucho campo', 's');
 
 --
 -- Índices para tablas volcadas
@@ -144,28 +144,6 @@ ALTER TABLE `clientes`
 --
 ALTER TABLE `viviendas`
   ADD PRIMARY KEY (`idVivienda`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `alquileres`
---
-ALTER TABLE `alquileres`
-  MODIFY `idAlquiler` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `citas`
---
-ALTER TABLE `citas`
-  MODIFY `idCita` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `viviendas`
---
-ALTER TABLE `viviendas`
-  MODIFY `idVivienda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
