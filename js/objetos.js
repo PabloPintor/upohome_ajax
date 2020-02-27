@@ -236,6 +236,9 @@ class UPOHOME{
             let index = this.arrayAlquileres.indexOf(oAlquiler);
             if (index > -1) {
                 this.arrayAlquileres.splice(index, 1);
+                $.post("../php/borrarAlquiler.php", {ALQUILER: sIdAlquiler}, function (data, textStatus, jqXHR) {
+                        
+                });
                 sMensaje = "Alquiler eliminado correctamente.";
             }
         }
