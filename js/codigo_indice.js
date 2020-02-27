@@ -1,3 +1,22 @@
+
+$.post("php/getViviendas.php", {}, function (data, textStatus, jqXHR) {
+    for (var i = 0; i < data.length; i++) { 
+        let oVivienda = new Vivienda(data[i].idVivienda,
+                                    data[i].direccion,
+                                    data[i].precioAlquiler,
+                                    data[i].estadoDisponibilidad,
+                                    data[i].imgPrincipal,
+                                    data[i].numHabitaciones,
+                                    data[i].descripcion,
+                                    data[i].exterior,
+                                    data[i].climatizacion);
+        añadirVivienda(oVivienda);
+    }
+    
+},"json");
+
+
+/*
 let oXML = loadXMLDoc("pisos.xml");
 let arrayViviendasTemp = oXML.querySelectorAll("vivienda");
 let arrayViviendas = Array();
@@ -13,10 +32,11 @@ arrayViviendasTemp.forEach(vivienda => {
                                     vivienda.querySelector("climatizacion").textContent, null));
 });
 
-arrayViviendas.forEach(vivienda => {
+arrayViviendasTemp.forEach(vivienda => {
+    console.log("HOLA");
     añadirVivienda(vivienda);
 });
-
+*/
 function añadirVivienda(oVivienda) {
     let divPisos = document.querySelector("#divViviendas");
     let divCard = document.createElement("DIV");

@@ -13,6 +13,6 @@ if($array['climatizacion'] == 1){
     $climatizacion = 's';
 }
 
-$SQL = "INSERT INTO `viviendas`(`idVivienda`, `direccion`, `precioAlquiler`, `estadoDisponibilidad`, `imgPrincipal`, `numHabitaciones`, `descripcion`, `exterior`, `climatizacion`)  VALUES ('".$array['idVivienda']."', '".$array['direccion']."', '".$array['precioAlquiler']."', '".$disponibilidad."', 'img/casa1.jpg', '".$array['numHabitaciones']."', '".$array['descripcion']."', '".$array['exterior']."', '".$climatizacion."')";
+$SQL = "INSERT INTO `viviendas`(`idVivienda`, `direccion`, `precioAlquiler`, `estadoDisponibilidad`, `imgPrincipal`, `numHabitaciones`, `descripcion`, `exterior`, `climatizacion`)  VALUES ('".$array['idVivienda']."', '".$array['direccion']."', '".$array['precioAlquiler']."', '".$disponibilidad."', 'casa1.jpg', '".$array['numHabitaciones']."', '".$array['descripcion']."', '".$array['exterior']."', '".$climatizacion."')";
 $resultado = $conexion->query($SQL);
 ?>
