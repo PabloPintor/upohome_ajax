@@ -128,7 +128,10 @@ frmEliminarCita.btnEliminarCita.addEventListener("click", borrarCita, false);
 //-----------------------------------------------------------------------------------------------//
 //CLIENTE
 
-oUPOHOME.crearTabla();
+setTimeout(function(){oUPOHOME.crearTablaViviendas();}, 1000);
+setTimeout(function(){oUPOHOME.crearTablaClientes();}, 1000);
+setTimeout(function(){oUPOHOME.crearTablaCitas();}, 1000);
+setTimeout(function(){oUPOHOME.crearTablaAlquileres();}, 1000);
 
 function altaCliente(){
     let bValido = true;
@@ -744,6 +747,7 @@ function borrarCita() {
     }
 }
 
+/*
 function crearTabla() {
 
     //crear tabla dom
@@ -774,7 +778,7 @@ function crearTabla() {
     oTabla.appendChild(oTBody);
 
     //insertar una fila
-    oUPOHOME.arrayVivienas.forEach(vivienda => {
+    oUPOHOME.arrayViviendas.forEach(vivienda => {
         let oCelda = oFila.insertCell(-1);
         oCelda.textContent = vivienda.idVivienda;
 
@@ -784,3 +788,4 @@ function crearTabla() {
 
     document.querySelector("#listados").appendChild(oTabla);
 }
+*/
